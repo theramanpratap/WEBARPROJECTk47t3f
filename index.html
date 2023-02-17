@@ -44,7 +44,7 @@
                     crossorigin
                     webkit-playsinline
                     autoplay
-           
+                    muted="true"
                     playsinline
                 ></video>
             </a-assets>
@@ -69,11 +69,16 @@
                     position="0 0.1 0"
                     rotation="-90 0 0"
                     class="clickable"
-                     muted="true"
+         
                   gesture-handler
                 ></a-video>
-                 <a-entity position="1.5 0.75 0" text="value: Click Me!; color: white; width: 3; height: 3; side: double;" event-set__1="_event: click; visible: false;"></a-entity>
-                 <a-entity position="1.5 0.75 0" button></a-entity>
+                <a-entity position="0 -0.75 0">
+                    <a-entity
+                        text="value: Click Me!; color: white; width: 3; height: 3; side: double;"
+                        button
+                        event-set__1="_event: click; href: https://www.google.com"
+                    ></a-entity>
+                </a-entity>
             </a-marker>
 
             <a-entity camera></a-entity>
