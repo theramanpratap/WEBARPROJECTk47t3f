@@ -22,6 +22,14 @@
                     }.bind(this));
                 },
             });
+            
+      AFRAME.registerComponent('click-handler', {
+        init: function () {
+          this.el.addEventListener('click', function () {
+            window.location.href = 'https://www.google.com'; // replace with your desired URL
+          });
+        }
+      });
         </script>
     </head>
 
@@ -44,7 +52,7 @@
                     crossorigin
                     webkit-playsinline
                     autoplay
-                    muted="true"
+                    muted="false"
                     playsinline
                 ></video>
             </a-assets>
@@ -72,13 +80,12 @@
          
                   gesture-handler
                 ></a-video>
-                <a-entity position="0 -0.75 0">
-                    <a-entity
-                        text="value: Click Me!; color: white; width: 3; height: 3; side: double;"
-                        button
-                        event-set__1="_event: click; href: https://www.google.com"
-                    ></a-entity>
-                </a-entity>
+                <a-entity
+          position="0 -0.3 0"
+          text="value: Click Me!; color: white; width: 3; height: 3; side: double;"
+          class="clickable"
+          click-handler
+        ></a-entity>
             </a-marker>
 
             <a-entity camera></a-entity>
