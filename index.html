@@ -1,11 +1,11 @@
 <!doctype html>
 <html>
     <head>
-        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+       <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
         <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-detector.js"></script>
         <script src="https://raw.githack.com/AR-js-org/studio-backend/master/src/modules/marker/tools/gesture-handler.js"></script>
-        <script>
+       <script>
             AFRAME.registerComponent('videohandler', {
                 init: function () {
                     var marker = this.el;
@@ -22,18 +22,22 @@
                     }.bind(this));
                 },
             });
-            
-      AFRAME.registerComponent('clickhandler', {
-        init: function () {
-          this.el.addEventListener('click', function () {
-            window.location.href = 'https://www.google.com'; // replace with your desired URL
-          });
-        }
-      });
+
+            AFRAME.registerComponent('clickhandler', {
+                init: function () {
+                    var videoEl = this.el;
+                    var sceneEl = document.querySelector('a-scene');
+
+                    videoEl.addEventListener('click', function () {
+                        sceneEl.renderer.xr.getSession().end();
+                        videoEl.play();
+                    });
+                }
+            });
         </script>
     </head>
 
-    <body style="margin: 0; overflow: hidden;">
+     <body style="margin: 0; overflow: hidden;">
         <a-scene
             vr-mode-ui="enabled: false"
             loading-screen="enabled: false;"
@@ -51,7 +55,6 @@
                     loop
                     crossorigin
                     webkit-playsinline
-                    autoplay
                     playsinline
                 ></video>
             </a-assets>
@@ -77,6 +80,7 @@
                     rotation="-90 0 0"
                     class="clickable"
                     gesture-handler
+                    clickhandler
                 ></a-video>
              
             </a-marker>
@@ -85,4 +89,5 @@
             <a-entity camera></a-entity>
         </a-scene>
     </body>
+
 </html>
